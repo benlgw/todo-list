@@ -2,7 +2,9 @@ class Project {
 	constructor({ name }) {
 		this.id = crypto.randomUUID();
 		this.name = name;
+		this.allNotes = [];
 		this.projectNotes = [];
+		this.completedNotes = [];
 	}
 
 	addNote(note) {
@@ -15,7 +17,19 @@ class Project {
 	}
 
 	getAllNotes() {
+		return this.allNotes;
+	}
+
+	getUncompletedNotes() {
 		return this.projectNotes;
+	}
+
+	getCompletedNotes() {
+		return this.completedNotes;
+	}
+
+	completeNote(note) {
+		this.completedNotes.push;
 	}
 }
 

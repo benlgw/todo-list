@@ -10,6 +10,7 @@ class Note {
 		this.dueDate = this.formatDate(dueDate);
 		// Priority Values: "low", "medium, "high"
 		this.priority = priority;
+		this.completed = false;
 	}
 
 	getTodayDate() {
@@ -37,6 +38,18 @@ class Note {
 
 	changeNotePriority(newPriority) {
 		this.priority = newPriority;
+	}
+
+	completeNote() {
+		this.completed = true;
+	}
+
+	uncompleteNote() {
+		this.completed = false;
+	}
+
+	isCompleted() {
+		return this.completed;
 	}
 }
 
