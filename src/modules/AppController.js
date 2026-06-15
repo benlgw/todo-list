@@ -18,6 +18,11 @@ class AppController {
 		});
 		return allNotes;
 	}
+
+	removeProject(project) {
+		const projectIndex = this.projects.indexOf(project);
+		this.projects.splice(projectIndex, 1);
+	}
 }
 
 export default AppController;
