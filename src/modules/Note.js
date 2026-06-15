@@ -6,16 +6,16 @@ class Note {
 		this.description = description;
 		// Date {day : dd, month : MM, year : yyyy}
 		this.creationDate = this.getTodayDate();
-		this.dueDate = format(new Date(this.formatDate(dueDate)), "dd/MM/yyyy");
+		this.dueDate = this.formatDate(dueDate);
 		// Priority Values: "low", "medium, "high"
 		this.priority = priority;
 	}
 
 	getTodayDate() {
-		const dd = new Date().getDate;
-		const mm = new Date().getMonth;
-		const yyyy = new Date().getFullYear;
-		return format(new Date(yyyy, mm, dd), "dd/MM/yyyy");
+		const day = new Date().getDate();
+		const month = new Date().getMonth();
+		const year = new Date().getFullYear();
+		return format(new Date(year, month, day), "dd/MM/yyyy");
 	}
 
 	formatDate(date) {
