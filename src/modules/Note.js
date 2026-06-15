@@ -2,6 +2,7 @@ import { format } from "date-fns";
 
 class Note {
 	constructor({ title, description, dueDate, priority = "low" }) {
+		this.id = crypto.randomUUID();
 		this.title = title;
 		this.description = description;
 		// Date {day : dd, month : MM, year : yyyy}
