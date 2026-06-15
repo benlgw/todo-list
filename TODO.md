@@ -12,8 +12,7 @@
 
 - [ ] Create Project Module
     <!-- Project acts as a container to hold notes -->
-  - [ ] Project Name
-  - [ ] Array of Notes Held
+  - [x] Project Name
+  - [x] Array of Notes Held
   <!-- Function Below -->
-  - [ ] (Create Project)
   - [ ] (Create Default Project in Constructor)
