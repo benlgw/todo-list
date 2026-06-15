@@ -13,6 +13,10 @@ class Project {
 		const noteIndex = this.projectNotes.indexOf(note);
 		this.projectNotes.splice(noteIndex, 1);
 	}
+
+	getAllNotes() {
+		return this.projectNotes;
+	}
 }
 
 export default Project;
