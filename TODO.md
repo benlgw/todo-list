@@ -15,4 +15,3 @@
   - [x] Project Name
   - [x] Array of Notes Held
   <!-- Function Below -->
-  - [ ] (Create Default Project in Constructor)
