@@ -1,14 +1,14 @@
-- [ ] Create Note Module
-  - [ ] Title
-  - [ ] Description
-  - [ ] Creation Date
-  - [ ] Due Date
-  - [ ] Priority
+- [x] Create Note Module
+  - [x] Title
+  - [x] Description
+  - [x] Creation Date
+  - [x] Due Date
+  - [x] Priority
   <!-- Function Below -->
-  - [ ] (Change Note Title)
-  - [ ] (Change Note Description)
-  - [ ] (Change Note Due Date)
-  - [ ] (Change Note Priority)
+  - [x] (Change Note Title)
+  - [x] (Change Note Description)
+  - [x] (Change Note Due Date)
+  - [x] (Change Note Priority)
 
 - [ ] Create Project Module
     <!-- Project acts as a container to hold notes -->
