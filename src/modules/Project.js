@@ -8,6 +8,7 @@ class Project {
 	}
 
 	addNote(note) {
+		this.allNotes.push(note);
 		this.projectNotes.push(note);
 	}
 
