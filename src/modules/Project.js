@@ -13,8 +13,10 @@ class Project {
 	}
 
 	removeNote(note) {
-		const noteIndex = this.projectNotes.indexOf(note);
-		this.projectNotes.splice(noteIndex, 1);
+		const noteIndexAllNotes = this.allNotes.indexOf(note);
+		this.projectNotes.splice(noteIndexAllNotes, 1);
+		const noteIndexProjectNotes = this.projectNotes.indexOf(note);
+		this.projectNotes.splice(noteIndexProjectNotes, 1);
 	}
 
 	getAllNotes() {
