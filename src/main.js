@@ -29,6 +29,27 @@ const defaultNote = new Note({
 defaultProject.addNote(defaultNote);
 //  End Default Project and Note
 
+// Initalise Test Project and Note
+const testProject = new Project({ name: "test" });
+App.addNewProject(testProject);
+Display.createProjectButton({
+	id: testProject.id,
+	projectName: testProject.name,
+});
+
+const testNote = new Note({
+	title: "Test Note",
+	description: "This note is  a test note.",
+	dueDate: {
+		day: new Date().getDate(),
+		month: new Date().getMonth(),
+		year: new Date().getFullYear(),
+	},
+	priority: "low",
+});
+testProject.addNote(testNote);
+//  End Test Project and Note
+
 // Event Listeners
 const newProjectButton = document.querySelector("#newProject");
 newProjectButton.addEventListener("click", () => {
@@ -45,8 +66,13 @@ projects.forEach((project) => {
 			if (project.textContent === "All Projects") {
 				Display.showNotes({ notes: App.getAllNotes() });
 			} else {
-				// do different stuff
+				const buttonId = project.id;
+				const projectObject = App.getProjectById({ id: buttonId })[0];
+				const projectNotes = projectObject.getAllNotes();
+				Display.showNotes({ notes: projectNotes });
 			}
 		}
 	});
 });
+
+console.log(App.getAllNotes());
