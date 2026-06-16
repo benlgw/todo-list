@@ -46,12 +46,9 @@ class DisplayController {
 		noteCard.append(title);
 
 		const description = document.createElement("p");
+		description.classList.add("description");
 		description.textContent = note.description;
 		noteCard.append(description);
-
-		const priority = document.createElement("p");
-		priority.textContent = `Priority: ${this.capitalise(note.priority)}`;
-		noteCard.append(priority);
 
 		const buttons = document.createElement("div");
 		buttons.classList.add("note-buttons");
