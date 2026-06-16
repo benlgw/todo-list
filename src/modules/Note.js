@@ -1,7 +1,7 @@
 import { format, formatDistance } from "date-fns";
 
 class Note {
-	constructor({ title, description, dueDate, priority = "low" }) {
+	constructor({ title, description = "", dueDate, priority = "low" }) {
 		this.id = crypto.randomUUID();
 		this.title = title;
 		this.description = description;
