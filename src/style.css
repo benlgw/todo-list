@@ -130,7 +130,7 @@ header {
 }
 
 .note {
-	height: 250px;
+	height: 200px;
 	width: 250px;
 	padding: 10px;
 
@@ -141,7 +141,7 @@ header {
 	box-shadow: 2px 2px 5px 1px rgb(48, 48, 48);
 
 	display: grid;
-	grid-template-rows: 75px 1fr 25px 50px;
+	grid-template-rows: auto 1fr 50px;
 }
 
 .note h2,
@@ -154,9 +154,10 @@ header {
 	text-align: center;
 }
 
-.note p:nth-child(1) {
+.note .description {
 	overflow: scroll;
-	height: 7px;
+	height: auto;
+	padding: 5px;
 }
 
 .note .note-buttons {
