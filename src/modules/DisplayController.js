@@ -38,7 +38,8 @@ class DisplayController {
 		noteCard.setAttribute("id", note.id);
 
 		const title = document.createElement("h2");
-		title.textContent = note.titlecharAt(0).toUpperCase() + note.title.slice(1);
+		title.textContent =
+			note.title.charAt(0).toUpperCase() + note.title.slice(1);
 		noteCard.append(title);
 
 		const description = document.createElement("p");
@@ -65,6 +66,7 @@ class DisplayController {
 	}
 
 	showNotes({ notes }) {
+		console.log(notes);
 		const notesSection = document.querySelector("#notes");
 		notesSection.innerHTML = "";
 		notes.forEach((note) => {
