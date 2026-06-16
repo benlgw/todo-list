@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, formatDistance } from "date-fns";
 
 class Note {
 	constructor({ title, description, dueDate, priority = "low" }) {
@@ -8,6 +8,7 @@ class Note {
 		// Date {day : dd, month : MM, year : yyyy}
 		this.creationDate = this.getTodayDate();
 		this.dueDate = this.formatDate(dueDate);
+		this.tillDueDate = formatDistance(this.creationDate, this.dueDate);
 		// Priority Values: "low", "medium, "high"
 		this.priority = priority;
 		this.completed = false;
