@@ -3,7 +3,9 @@ import "./style.css";
 import Note from "./modules/Note.js";
 import Project from "./modules/Project.js";
 import AppController from "./modules/AppController.js";
+import DisplayController from "./modules/DisplayController.js";
 
+const Display = new DisplayController();
 const App = new AppController();
 
 const defaultProject = new Project({ name: "default" });
