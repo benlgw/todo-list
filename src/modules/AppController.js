@@ -7,16 +7,16 @@ class AppController {
 		this.projects.push(project);
 	}
 
-	getAllProjects() {
-		return this.projects;
-	}
-
 	getAllNotes() {
 		const allNotes = [];
 		this.projects.forEach((project) => {
 			allNotes.push(...project.projectNotes);
 		});
 		return allNotes;
+	}
+
+	getProjectById({ id }) {
+		return this.projects.filter((project) => project.id === id);
 	}
 
 	removeProject(project) {
