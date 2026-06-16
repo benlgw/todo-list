@@ -13,8 +13,7 @@ class DisplayController {
 		const project = document.createElement("button");
 		project.classList.add("project");
 		project.setAttribute("id", id);
-		project.innerText =
-			projectName.charAt(0).toUpperCase() + projectName.slice(1);
+		project.innerText = this.capitalise(projectName);
 		sidebar.append(project);
 	}
 
@@ -35,16 +34,24 @@ class DisplayController {
 	createNote(note) {
 		const noteCard = document.createElement("div");
 		noteCard.classList.add("note");
+		note.priority === "low"
+			? (noteCard.style.backgroundColor = "rgba(55, 255, 0, 0.3)")
+			: note.priority === "medium"
+				? (noteCard.style.backgroundColor = "rgba(255, 200, 0, 0.3)")
+				: (noteCard.style.backgroundColor = "rgba(255, 0, 0, 0.3)");
 		noteCard.setAttribute("id", note.id);
 
 		const title = document.createElement("h2");
-		title.textContent =
-			note.title.charAt(0).toUpperCase() + note.title.slice(1);
+		title.textContent = this.capitalise(note.title);
 		noteCard.append(title);
 
 		const description = document.createElement("p");
 		description.textContent = note.description;
 		noteCard.append(description);
+
+		const priority = document.createElement("p");
+		priority.textContent = `Priority: ${this.capitalise(note.priority)}`;
+		noteCard.append(priority);
 
 		const buttons = document.createElement("div");
 		buttons.classList.add("note-buttons");
@@ -54,6 +61,10 @@ class DisplayController {
 		deleteButtonImage.setAttribute("src", "./src/assets/images/bin-1-bold.svg");
 		deleteButton.append(deleteButtonImage);
 		buttons.append(deleteButton);
+
+		const dueDate = document.createElement("p");
+		dueDate.textContent = note.dueDate;
+		buttons.append(dueDate);
 
 		const completeButton = document.createElement("button");
 		const completeButtonImage = document.createElement("img");
@@ -66,13 +77,16 @@ class DisplayController {
 	}
 
 	showNotes({ notes }) {
-		console.log(notes);
 		const notesSection = document.querySelector("#notes");
 		notesSection.innerHTML = "";
 		notes.forEach((note) => {
 			const noteCard = this.createNote(note);
 			notesSection.append(noteCard);
 		});
+	}
+
+	capitalise(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 }
 
