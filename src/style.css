@@ -154,15 +154,15 @@ header {
 	text-align: center;
 }
 
-.note p {
+.note p:nth-child(1) {
 	overflow: scroll;
-	height: 70px;
+	height: 7px;
 }
 
 .note .note-buttons {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
+	align-items: center;
 }
 
 .note button {
