@@ -21,6 +21,9 @@ class Note {
 	}
 
 	formatDate(date) {
+		if (typeof date === "string") {
+			return format(new Date(date), "dd/MM/yyyy");
+		}
 		return format(new Date(date.year, date.month - 1, date.day), "dd/MM/yyyy");
 	}
 
