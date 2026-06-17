@@ -262,6 +262,10 @@ dialog form button:active {
 	box-shadow: none;
 }
 
+.hide {
+	display: none;
+}
+
 footer {
 	grid-column: 1 / 3;
 	grid-row: 3 / 4;
