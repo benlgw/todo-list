@@ -1,10 +1,16 @@
+import Note from "./Note.js";
+
 class Project {
-	constructor({ name }) {
-		this.id = crypto.randomUUID();
+	constructor({ id, name, allNotes = [], completedNotes = [] }) {
+		this.id = id ?? crypto.randomUUID();
 		this.name = name;
-		this.allNotes = [];
-		this.projectNotes = [];
-		this.completedNotes = [];
+		this.allNotes = allNotes.map((note) =>
+			note instanceof Note ? note : Note.fromJSON(note),
+		);
+		this.completedNotes = completedNotes.map((note) =>
+			note instanceof Note ? note : Note.fromJSON(note),
+		);
+		this.projectNotes = this.allNotes.filter((note) => !note.completed);
 	}
 
 	addNote(note) {
@@ -33,6 +39,10 @@ class Project {
 
 	completeNote(note) {
 		this.completedNotes.push;
+	}
+
+	static fromJSON(json) {
+		return new Project(json);
 	}
 }
 

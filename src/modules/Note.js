@@ -1,16 +1,26 @@
 import { format, formatDistance } from "date-fns";
 
 class Note {
-	constructor({ title, description = "", dueDate, priority = "low" }) {
-		this.id = crypto.randomUUID();
+	constructor({
+		id,
+		title,
+		description = "",
+		dueDate,
+		creationDate,
+		priority = "low",
+		completed = false,
+	}) {
+		this.id = id ?? crypto.randomUUID();
 		this.title = title;
 		this.description = description;
 		// Date {day : dd, month : MM, year : yyyy}
-		this.creationDate = this.getTodayDate();
-		this.dueDate = this.formatDate(dueDate);
+		this.creationDate = creationDate ?? this.getTodayDate();
+		this.dueDate = this.isFormatted(dueDate)
+			? dueDate
+			: this.formatDate(dueDate);
 		// Priority Values: "low", "medium, "high"
 		this.priority = priority;
-		this.completed = false;
+		this.completed = completed;
 	}
 
 	getTodayDate() {
@@ -18,6 +28,10 @@ class Note {
 		const month = new Date().getMonth();
 		const year = new Date().getFullYear();
 		return format(new Date(year, month, day), "dd/MM/yyyy");
+	}
+
+	isFormatted(date) {
+		return typeof date === "string" && /^\d{2}\/\d{2}\/\d{4}$/.test(date);
 	}
 
 	formatDate(date) {
@@ -53,6 +67,10 @@ class Note {
 
 	isCompleted() {
 		return this.completed;
+	}
+
+	static fromJSON(json) {
+		return new Note(json);
 	}
 }
 
