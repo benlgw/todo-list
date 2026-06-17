@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ToDo list</title>
+		<script type="module" crossorigin src="/assets/index-CIncbV8j.js"></script>
+		<link rel="stylesheet" crossorigin href="/assets/index-BE_vlV0X.css">
+	</head>
+	<body>
+		<div class="app" id="app">
+			<header>
+				<h1>ToDo list</h1>
+			</header>
+			<div class="sidebar" id="sidebar">
+				<div>
+					<h1>Projects</h1>
+					<button id="newProject">+</button>
+				</div>
+			</div>
+			<div class="content" id="content">
+				<div class="content-header">
+					<h1>Notes</h1>
+					<button id="newNote">+</button>
+				</div>
+				<div class="notes" id="notes"></div>
+			</div>
+			<dialog class="project-modal hide" id="projectModal" open>
+				<h1>New Project</h1>
+				<form>
+					<label for="projectName">Project Name:</label>
+					<input
+						type="text"
+						id="projectName"
+						name="projectName"
+						minlength="1"
+						required
+					/>
+					<button type="button" id="createNewProject">
+						Create New Project
+					</button>
+				</form>
+			</dialog>
+			<dialog class="note-modal hide" id="noteModal" open>
+				<h1>New Note</h1>
+				<form>
+					<label for="noteTitle">Note Title:</label>
+					<input
+						type="text"
+						id="noteTitle"
+						name="noteTitle"
+						minlength="1"
+						required
+					/>
+
+					<label for="noteDescription">Note Description:</label>
+					<input
+						type="text"
+						id="noteDescription"
+						name="noteDescription"
+						maxlength="75"
+					/>
+
+					<label for="dueDate">Due Date:</label>
+					<input type="date" id="dueDate" name="dueDate" required />
+
+					<label for="notePriority">Priority:</label>
+					<div class="radio">
+						<div>
+							<input
+								type="radio"
+								id="notePriority"
+								name="notePriority"
+								value="low"
+							/>
+							<label>Low</label>
+						</div>
+						<div>
+							<input
+								type="radio"
+								id="notePriority"
+								name="notePriority"
+								value="medium"
+							/>
+							<label>Medium</label>
+						</div>
+						<div>
+							<input
+								type="radio"
+								id="notePriority"
+								name="notePriority"
+								value="high"
+							/>
+							<label>High</label>
+						</div>
+					</div>
+
+					<button type="button" id="createNewNote">Create New Note</button>
+				</form>
+			</dialog>
+			<footer></footer>
+		</div>
+	</body>
+</html>
