@@ -7,6 +7,14 @@ class AppController {
 		this.projects.push(project);
 	}
 
+	getAllProjects() {
+		return this.projects;
+	}
+
+	getProjectsForStorage() {
+		return this.projects.filter((project) => project.name !== "default");
+	}
+
 	getAllNotes() {
 		const allNotes = [];
 		this.projects.forEach((project) => {
