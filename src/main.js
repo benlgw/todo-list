@@ -21,15 +21,44 @@ const defaultNote = new Note({
 	description: "This note is created automatically.",
 	dueDate: {
 		day: new Date().getDate(),
-		month: new Date().getMonth(),
+		month: new Date().getMonth() + 1,
 		year: new Date().getFullYear(),
 	},
 	priority: "high",
 });
 defaultProject.addNote(defaultNote);
+
+const all = document.querySelector(".project");
+Display.selectButton(all);
+Display.showNotes({ notes: App.getAllNotes() });
 //  End Default Project and Note
 
 // Event Listeners
+let selectedProjects = [];
+const sidebar = document.querySelector("#sidebar");
+sidebar.addEventListener("click", (e) => {
+	const project = e.target.closest(".project");
+	if (!project) return;
+
+	if (e.ctrlKey && project.textContent !== "All Projects") {
+		selectedProjects.push(project);
+		Display.selectMultipleButtons(project);
+	} else {
+		Display.selectButton(project);
+		if (project.textContent === "All Projects") {
+			selectedProjects = [];
+			Display.showNotes({ notes: App.getAllNotes() });
+		} else {
+			selectedProjects = [];
+			selectedProjects.push(project);
+			const buttonId = project.id;
+			const projectObject = App.getProjectById({ id: buttonId })[0];
+			const projectNotes = projectObject.getAllNotes();
+			Display.showNotes({ notes: projectNotes });
+		}
+	}
+});
+
 const newProjectButton = document.querySelector("#newProject");
 newProjectButton.addEventListener("click", () => {
 	Display.toggleProjectModal();
@@ -55,27 +84,28 @@ newNoteButton.addEventListener("click", () => {
 	Display.toggleNotetModal();
 });
 
-let selectedProjects = [];
-const sidebar = document.querySelector("#sidebar");
-sidebar.addEventListener("click", (e) => {
-	const project = e.target.closest(".project");
-	if (!project) return;
+const noteModalForm = document.querySelector("#noteModal form");
+const createNoteButton = document.querySelector("#createNewNote");
+createNoteButton.addEventListener("click", () => {
+	if (!noteModalForm.reportValidity()) return;
+	const noteTitle = noteModalForm[0].value;
+	const noteDescription = noteModalForm[1].value;
+	const noteDueDate = noteModalForm[2].value;
+	const notePriority = noteModalForm.querySelector(
+		'input[name="notePriority"]:checked',
+	)?.value;
+	const newNote = new Note({
+		title: noteTitle,
+		description: noteDescription,
+		dueDate: noteDueDate,
+		priority: notePriority,
+	});
 
-	if (e.ctrlKey && project.textContent !== "All Projects") {
-		selectedProjects.push(project);
-		Display.selectMultipleButtons(project);
-	} else {
-		Display.selectButton(project);
-		if (project.textContent === "All Projects") {
-			selectedProjects = [];
-			Display.showNotes({ notes: App.getAllNotes() });
-		} else {
-			selectedProjects = [];
-			selectedProjects.push(project);
-			const buttonId = project.id;
-			const projectObject = App.getProjectById({ id: buttonId })[0];
-			const projectNotes = projectObject.getAllNotes();
-			Display.showNotes({ notes: projectNotes });
-		}
-	}
+	const projectId = selectedProjects[0].id;
+	const selectedProject = App.getProjectById({ id: projectId })[0];
+
+	selectedProject.addNote(newNote);
+	const refresh = selectedProject.getUncompletedNotes();
+	Display.showNotes({ notes: refresh });
+	Display.toggleNotetModal();
 });
