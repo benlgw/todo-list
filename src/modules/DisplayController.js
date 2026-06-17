@@ -56,21 +56,21 @@ class DisplayController {
 		const buttons = document.createElement("div");
 		buttons.classList.add("note-buttons");
 
-		const deleteButton = document.createElement("button");
-		const deleteButtonImage = document.createElement("img");
-		deleteButtonImage.setAttribute("src", "./src/assets/images/bin-1-bold.svg");
-		deleteButton.append(deleteButtonImage);
-		buttons.append(deleteButton);
+		// const deleteButton = document.createElement("button");
+		// const deleteButtonImage = document.createElement("img");
+		// deleteButtonImage.setAttribute("src", "./src/assets/images/bin-1-bold.svg");
+		// deleteButton.append(deleteButtonImage);
+		// buttons.append(deleteButton);
 
 		const dueDate = document.createElement("p");
 		dueDate.textContent = note.dueDate;
 		buttons.append(dueDate);
 
-		const completeButton = document.createElement("button");
-		const completeButtonImage = document.createElement("img");
-		completeButtonImage.setAttribute("src", "./src/assets/images/tick-04.svg");
-		completeButton.append(completeButtonImage);
-		buttons.append(completeButton);
+		// const completeButton = document.createElement("button");
+		// const completeButtonImage = document.createElement("img");
+		// completeButtonImage.setAttribute("src", "./src/assets/images/tick-04.svg");
+		// completeButton.append(completeButtonImage);
+		// buttons.append(completeButton);
 
 		noteCard.append(buttons);
 		return noteCard;
