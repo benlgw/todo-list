@@ -4,9 +4,11 @@ import Note from "./modules/Note.js";
 import Project from "./modules/Project.js";
 import AppController from "./modules/AppController.js";
 import DisplayController from "./modules/DisplayController.js";
+import StorageController from "./modules/storageController.js";
 
 const App = new AppController();
 const Display = new DisplayController();
+const Storage = new StorageController();
 
 // Initalise Default Project and Note
 const defaultProject = new Project({ name: "default" });
@@ -27,11 +29,25 @@ const defaultNote = new Note({
 	priority: "high",
 });
 defaultProject.addNote(defaultNote);
+//  End Default Project and Note
+
+// Restore
+const stored = Storage.retrieve();
+if (stored && stored.length > 0) {
+	stored.forEach((projectData) => {
+		const project = Project.fromJSON(projectData);
+		App.addNewProject(project);
+		Display.createProjectButton({
+			id: project.id,
+			projectName: project.name,
+		});
+	});
+}
 
 const all = document.querySelector(".project");
 Display.selectButton(all);
 Display.showNotes({ notes: App.getAllNotes() });
-//  End Default Project and Note
+// End Restore
 
 // Event Listeners
 let selectedProjects = [];
@@ -75,6 +91,7 @@ createProjectButton.addEventListener("click", () => {
 		id: newProject.id,
 		projectName: newProject.name,
 	});
+	Storage.save(App.getProjectsForStorage());
 	Display.toggleProjectModal();
 });
 
@@ -105,6 +122,7 @@ createNoteButton.addEventListener("click", () => {
 	const selectedProject = App.getProjectById({ id: projectId })[0];
 
 	selectedProject.addNote(newNote);
+	Storage.save(App.getProjectsForStorage());
 	const refresh = selectedProject.getUncompletedNotes();
 	Display.showNotes({ notes: refresh });
 	Display.toggleNotetModal();
