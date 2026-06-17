@@ -1,6 +1,9 @@
 const sidebar = document.querySelector("#sidebar");
 const content = document.querySelector("#content");
 
+const projectModal = document.querySelector("#projectModal");
+const noteModal = document.querySelector("#noteModal");
+
 class DisplayController {
 	constructor() {
 		const allProjects = document.createElement("button");
@@ -84,6 +87,14 @@ class DisplayController {
 
 	capitalise(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+	toggleProjectModal() {
+		projectModal.classList.toggle("hide");
+	}
+
+	toggleNotetModal() {
+		noteModal.classList.toggle("hide");
 	}
 }
 
