@@ -21,7 +21,7 @@
 				</div>
 				<div class="notes" id="notes"></div>
 			</div>
-			<dialog class="project-modal" id="project-modal">
+			<dialog class="project-modal hide" id="projectModal" open>
 				<h1>New Project</h1>
 				<form>
 					<label for="projectName">Project Name:</label>
@@ -32,10 +32,12 @@
 						minlength="1"
 						required
 					/>
-					<button type="button">Create New Project</button>
+					<button type="button" id="createNewProject">
+						Create New Project
+					</button>
 				</form>
 			</dialog>
-			<dialog class="note-modal" id="note-modal">
+			<dialog class="note-modal hide" id="noteModal" open>
 				<h1>New Note</h1>
 				<form>
 					<label for="noteTitle">Note Title:</label>
